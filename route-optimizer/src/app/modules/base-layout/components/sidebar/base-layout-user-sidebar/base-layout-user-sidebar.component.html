@@ -1,0 +1,55 @@
+<app-base-layout-sidebar>
+  <div class="sidebar-items">
+    <div class="list-group list-group-flush">
+      <app-base-layout-sidebar-item [link]="['/user-panel']" [exact]="true">
+        <fa-icon [icon]="faTachometerAlt"></fa-icon> Panel użytkownika
+      </app-base-layout-sidebar-item>
+      <app-base-layout-sidebar-item [link]="['/business-trips', 'my-business-trips']">
+        Twoje delegacje
+      </app-base-layout-sidebar-item>
+      <app-base-layout-sidebar-item [link]="['/user-panel', 'companies']" [expandable]="false">
+        <fa-icon [icon]="faBuilding"></fa-icon> Firmy
+      </app-base-layout-sidebar-item>
+      <div class="list-group list-group-flush">
+        <app-base-layout-sidebar-item [link]="['/user-panel', 'companies']" [exact]="true">
+          Przeglądaj
+        </app-base-layout-sidebar-item>
+        <app-base-layout-sidebar-item [link]="['/user-panel', 'companies', 'add']">
+          Dodaj
+        </app-base-layout-sidebar-item>
+      </div>
+      <!--      <app-base-layout-sidebar-item [link]="" [exact]=""></app-base-layout-sidebar-item>-->
+      <!--      <a [routerLink]="['/business-trips/my-business-trips']" routerLinkActive="active" class="list-group-item list-group-item-action"-->
+      <!--        >Twoje delegacje</a-->
+      <!--      >-->
+      <!--      <a [routerLink]="['/user-panel/companies']" class="list-group-item list-group-item-action">-->
+      <!--        <fa-icon [icon]="faBuilding"></fa-icon>-->
+      <!--        Firmy-->
+      <!--      </a>-->
+      <!--      <div class="list-group list-group-flush">-->
+      <!--        <a-->
+      <!--          [routerLink]="['/user-panel/companies']"-->
+      <!--          [routerLinkActiveOptions]="{ exact: true }"-->
+      <!--          routerLinkActive="active"-->
+      <!--          class="list-group-item list-group-item-action"-->
+      <!--          >Przeglądaj</a-->
+      <!--        >-->
+      <!--        <a [routerLink]="['/user-panel/companies/add']" routerLinkActive="active" class="list-group-item list-group-item-action"-->
+      <!--          >Dodaj firmę</a-->
+      <!--        >-->
+      <!--      </div>-->
+      <!--      <a [routerLink]="['/user-panel/requisitions']" routerLinkActive="active" class="list-group-item list-group-item-action">-->
+      <!--        <fa-icon [icon]="faMoneyBillWave"></fa-icon>-->
+      <!--        Oferty-->
+      <!--      </a>-->
+      <!--      <div class="list-group list-group-flush">-->
+      <!--        <a [routerLink]="['/user-panel/requisitions']" routerLinkActive="active" class="list-group-item list-group-item-action"-->
+      <!--          >Przeglądaj</a-->
+      <!--        >-->
+      <!--        <a [routerLink]="['/user-panel/requisitions/add']" routerLinkActive="active" class="list-group-item list-group-item-action"-->
+      <!--          >Dodaj ofertę</a-->
+      <!--        >-->
+      <!--      </div>-->
+    </div>
+  </div>
+</app-base-layout-sidebar>

@@ -4,9 +4,15 @@
     > .list-group-item {
       padding-left: 2.5rem;
     }
+    > app-base-layout-sidebar-item {
+      > .list-group-item {
+        padding-left: 2.5rem;
+      }
+    }
   }
 
-  > .list-group-item {
+  > .list-group-item,
+  app-base-layout-sidebar-item > .list-group-item {
     border-radius: 0;
     border-width: 1px 0 0 0;
     &:first-child {
