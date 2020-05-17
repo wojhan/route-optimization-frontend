@@ -1,0 +1,56 @@
+.map-panel-icon {
+  background: white;
+  padding: 10px;
+  position: absolute;
+  top: 80px;
+  left: 10px;
+  z-index: 11000;
+  font-size: 0.95rem;
+  cursor: pointer;
+
+  &:hover {
+    background: darken(white, 5%);
+  }
+  &.map-shadow {
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+  }
+}
+
+.map-panel {
+  background: white;
+  position: absolute;
+  z-index: 10000;
+  top: 80px;
+  left: 10px;
+
+  padding: 0 15px;
+
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+
+  transition: ease 3s;
+
+  &.hidden {
+    display: none;
+  }
+
+  h2 {
+    font-size: 1rem;
+    margin: 20px 0 0;
+    text-align: center;
+  }
+
+  .list-group-item {
+    display: flex;
+    font-size: 0.9rem;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+      padding: 0 30px;
+      &:first-of-type {
+        margin-top: 0;
+      }
+      margin: 3px 0 0;
+    }
+  }
+}

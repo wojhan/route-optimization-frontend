@@ -1,15 +1,17 @@
-import { AfterViewInit, Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Map, Marker, MapOptions, LatLng, featureGroup } from 'leaflet';
 import { ToastrService } from 'ngx-toastr';
 
 import { environment } from '@route-optimizer/environment/environment';
 import { MapService } from '@route-optimizer/core/services/map.service';
+import { BehaviorSubject } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html'
 })
-export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
+export class MapComponent implements AfterViewInit, OnInit, OnChanges, OnDestroy {
   private map: Map;
   private markers: Marker[];
 
@@ -20,8 +22,19 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() lat: number = environment.map.defaultLat;
   @Input() lng: number = environment.map.defaultLng;
   @Input() markerCoordinates = [];
+  @Input() fitTo: BehaviorSubject<LatLng>;
+  @Input() fitToMeters = 10000;
 
   constructor(private mapService: MapService, private toastr: ToastrService) {}
+
+  ngOnInit() {
+    this.fitTo.pipe(filter(v => !!v)).subscribe({
+      next: (latLng: LatLng) => {
+        const bounds = latLng.toBounds(this.fitToMeters);
+        this.map.fitBounds(bounds);
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -70,7 +83,6 @@ export class MapComponent implements AfterViewInit, OnChanges, OnDestroy {
 
     if (this.markers && this.markers.length) {
       const group = featureGroup(this.markers);
-      console.log(this.markers);
       this.map.fitBounds(group.getBounds().pad(0.5));
       this.map.setZoom(this.markers.length === 1 ? environment.map.singleElementZoom : this.mapOptions.zoom);
     }

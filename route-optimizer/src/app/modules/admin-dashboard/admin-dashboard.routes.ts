@@ -8,6 +8,7 @@ export const AdminDashboardRoutes: Route[] = [
     component: AdminDashboardPage,
     data: {
       breadcrumb: 'Panel administracyjny'
-    }
+    },
+    children: [{ path: 'departments', loadChildren: './modules/department/department.module#DepartmentModule' }]
   }
 ];
