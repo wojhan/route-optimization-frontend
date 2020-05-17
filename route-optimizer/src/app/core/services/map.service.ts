@@ -9,6 +9,7 @@ import { environment } from '@route-optimizer/environment/environment';
 import { WayPoint } from '@route-optimizer/modules/map/components/route-map/WayPoint';
 import { Route } from '../models/Route';
 import { RouteType } from '../enums/RouteType';
+import { InvalidAddressQueryError } from '@route-optimizer/modules/map/InvalidAddressQueryError';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class MapService {
           return of(addresses[0]);
         }
 
-        throw throwError(new Error('Invalid query string'));
+        return throwError(new InvalidAddressQueryError('Invalid address query'));
       }),
       map((a: { lat; lon }) => {
         return new L.LatLng(a.lat, a.lon);

@@ -1,11 +1,12 @@
 import { AfterViewInit, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { untilComponentDestroyed } from '@w11k/ngx-componentdestroyed';
 import { Map, Marker, MapOptions, LatLng, featureGroup } from 'leaflet';
 import { ToastrService } from 'ngx-toastr';
-
-import { environment } from '@route-optimizer/environment/environment';
-import { MapService } from '@route-optimizer/core/services/map.service';
 import { BehaviorSubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
+
+import { MapService } from '@route-optimizer/core/services/map.service';
+import { environment } from '@route-optimizer/environment/environment';
 
 @Component({
   selector: 'app-map',
@@ -13,7 +14,7 @@ import { filter } from 'rxjs/operators';
 })
 export class MapComponent implements AfterViewInit, OnInit, OnChanges, OnDestroy {
   private map: Map;
-  private markers: Marker[];
+  private markers: Marker[] = [];
 
   @Input() width: number;
   @Input() height: number;
@@ -28,12 +29,19 @@ export class MapComponent implements AfterViewInit, OnInit, OnChanges, OnDestroy
   constructor(private mapService: MapService, private toastr: ToastrService) {}
 
   ngOnInit() {
-    this.fitTo.pipe(filter(v => !!v)).subscribe({
-      next: (latLng: LatLng) => {
-        const bounds = latLng.toBounds(this.fitToMeters);
-        this.map.fitBounds(bounds);
-      }
-    });
+    if (this.fitTo) {
+      this.fitTo
+        .pipe(
+          filter(v => !!v),
+          untilComponentDestroyed(this)
+        )
+        .subscribe({
+          next: (latLng: LatLng) => {
+            const bounds = latLng.toBounds(this.fitToMeters);
+            this.map.fitBounds(bounds);
+          }
+        });
+    }
   }
 
   ngAfterViewInit(): void {
@@ -43,6 +51,9 @@ export class MapComponent implements AfterViewInit, OnInit, OnChanges, OnDestroy
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (!this.map) {
+      return;
+    }
     if (changes.markerCoordinates && changes.markerCoordinates.currentValue) {
       if (changes.markerCoordinates.isFirstChange()) {
         this.markers = [];

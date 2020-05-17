@@ -1,0 +1,60 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+  <form *ngIf="data.form" [formGroup]="data.form" id="field-container">
+    <div class="row">
+      <div class="col">
+        <mat-form-field>
+          <input matInput placeholder="Nazwa" formControlName="name" />
+          <mat-error *ngIf="data.form.get('name').errors?.required">To pole jest wymagane</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field>
+          <input type="number" matInput placeholder="NIP" formControlName="nip" />
+          <mat-error *ngIf="data.form.get('nip').errors?.pattern">Wpisz prawidłowy NIP</mat-error>
+          <mat-error *ngIf="data.form.get('nip').errors?.required">To pole jest wymagane</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field>
+          <input matInput placeholder="Ulica" formControlName="street" />
+        </mat-form-field>
+      </div>
+      <div class="col-auto">
+        <mat-form-field>
+          <input matInput placeholder="Numer budynku" formControlName="houseNo" />
+          <mat-error *ngIf="data.form.get('houseNo').errors?.required">To pole jest wymagane</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-auto">
+        <mat-form-field>
+          <input matInput placeholder="Kod pocztowy" formControlName="postcode" />
+          <mat-error *ngIf="data.form.get('postcode').errors?.required">To pole jest wymagane</mat-error>
+          <mat-error *ngIf="data.form.get('postcode').errors?.pattern">Wpisz kod w formacie xx-xxx</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <input matInput placeholder="Miasto" formControlName="city" />
+          <mat-error *ngIf="data.form.get('city').errors?.required">To pole jest wymagane</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  <div class="row" *ngIf="data.errors">
+    <div class="col">
+      <mat-error *ngFor="let error of data.errors">{{error}}</mat-error>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions class="buttons">
+  <button mat-button (click)="onNoClick()">Cofnij</button>
+  <button mat-button (click)="onSaveClick()" [disabled]="data.form.invalid ">Zapisz</button>
+</div>

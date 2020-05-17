@@ -3,7 +3,7 @@
     <h1 class="section-header">Mapa filii firm</h1>
   </div>
   <div class="col d-flex justify-content-end align-items-center">
-    <button class="btn btn-outline-primary">Dodaj nową filię</button>
+    <button class="btn btn-outline-primary" (click)="addDepartment()">Dodaj nową filię</button>
   </div>
 </div>
 <div class="row flex-fill">
@@ -21,17 +21,26 @@
         <div class="row mt-1">
           <div class="col">
             <ul class="list-group list-group-flush">
-              <!--              <li class="list-group-item list-group-item-light" (click)="fitTo(1)">-->
-              <!--                <app-map-marker [marker]="companyMarker" content="1"></app-map-marker>-->
-              <!--                <div class="department-details">-->
-              <!--                  <p>Firma</p>-->
-              <!--                  <p>ul. Ulica 1</p>-->
-              <!--                  <p>15-000 Miasto</p>-->
-              <!--                </div>-->
-              <!--                <button class="btn btn-outline-danger btn-sm">-->
-              <!--                  <fa-icon [icon]="faTrash"></fa-icon>-->
-              <!--                </button>-->
-              <!--              </li>-->
+              <li
+                *ngFor="let department of departments; let i = index"
+                class="list-group-item list-group-item-light"
+                (click)="fitTo(department)"
+              >
+                <app-map-marker [marker]="companyMarker" content="{{i+1}}"></app-map-marker>
+                <div class="department-details">
+                  <p>{{department.name}}</p>
+                  <ng-container *ngIf="department.street">
+                    <p>ul. {{department.street}} {{department.houseNo}}</p>
+                  </ng-container>
+                  <ng-container *ngIf="!department.street">
+                    <p>{{department.city}} {{department.houseNo}}</p>
+                  </ng-container>
+                  <p>{{department.postcode}} {{department.city}}</p>
+                </div>
+                <button class="btn btn-outline-danger btn-sm" (click)="deleteDepartment(department.id)">
+                  <fa-icon [icon]="faTrash"></fa-icon>
+                </button>
+              </li>
             </ul>
           </div>
         </div>
