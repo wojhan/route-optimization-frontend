@@ -7,14 +7,9 @@
       <app-base-layout-sidebar-item [link]="['/business-trips']">
         Delegacje
       </app-base-layout-sidebar-item>
-      <!--      <a-->
-      <!--        [routerLink]="['/admin-panel']"-->
-      <!--        routerLinkActive="active"-->
-      <!--        [routerLinkActiveOptions]="{ exact: true }"-->
-      <!--        class="list-group-item list-group-item-action"-->
-      <!--        >Panel administratora</a-->
-      <!--      >-->
-      <!--      <a [routerLink]="['/business-trips']" routerLinkActive="active" class="list-group-item list-group-item-action">Delegacje</a>-->
+      <app-base-layout-sidebar-item [link]="['/admin-panel', 'departments']">
+        Filie firmy
+      </app-base-layout-sidebar-item>
     </div>
   </div>
 </app-base-layout-sidebar>

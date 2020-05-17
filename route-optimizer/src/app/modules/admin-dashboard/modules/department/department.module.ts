@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DepartmentPage } from './pages/department.page';
+import { RouterModule } from '@angular/router';
+
 import { SharedModule } from '@route-optimizer/shared/shared.module';
 import { MapModule } from '@route-optimizer/modules/map/map.module';
-import { RouterModule } from '@angular/router';
-import { DepartmentRoutes } from '@route-optimizer/modules/admin-dashboard/modules/department/department.routes';
+import { DepartmentRoutes } from './department.routes';
+import { AddDepartmentModal } from './modals/add-department/add-department.modal';
+import { DepartmentPage } from './pages/department.page';
 
 @NgModule({
-  declarations: [DepartmentPage],
+  declarations: [DepartmentPage, AddDepartmentModal],
+  entryComponents: [AddDepartmentModal],
   imports: [SharedModule, MapModule, RouterModule.forChild(DepartmentRoutes)]
 })
 export class DepartmentModule {}
