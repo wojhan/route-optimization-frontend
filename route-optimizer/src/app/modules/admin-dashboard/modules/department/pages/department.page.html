@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col">
+    <h1 class="section-header">Mapa filii firm</h1>
+  </div>
+  <div class="col d-flex justify-content-end align-items-center">
+    <button class="btn btn-outline-primary">Dodaj nową filię</button>
+  </div>
+</div>
+<div class="row flex-fill">
+  <div class="col">
+    <div class="map map-overlay">
+      <div [ngClass]="mapPanelIconClass" (click)="toggleMapPanel()">
+        <fa-icon [icon]="mapPanelIcon"></fa-icon>
+      </div>
+      <div class="map-panel" [hidden]="!isMapPanelEnabled">
+        <div class="row mt-4">
+          <div class="col">
+            <h2>Dostępne filie</h2>
+          </div>
+        </div>
+        <div class="row mt-1">
+          <div class="col">
+            <ul class="list-group list-group-flush">
+              <!--              <li class="list-group-item list-group-item-light" (click)="fitTo(1)">-->
+              <!--                <app-map-marker [marker]="companyMarker" content="1"></app-map-marker>-->
+              <!--                <div class="department-details">-->
+              <!--                  <p>Firma</p>-->
+              <!--                  <p>ul. Ulica 1</p>-->
+              <!--                  <p>15-000 Miasto</p>-->
+              <!--                </div>-->
+              <!--                <button class="btn btn-outline-danger btn-sm">-->
+              <!--                  <fa-icon [icon]="faTrash"></fa-icon>-->
+              <!--                </button>-->
+              <!--              </li>-->
+            </ul>
+          </div>
+        </div>
+      </div>
+      <app-map height="100%" width="100%" mapId="map" [fitTo]="fitToSubject" [markerCoordinates]="mapCoordinates"></app-map>
+    </div>
+  </div>
+</div>
