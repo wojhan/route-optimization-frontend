@@ -1,0 +1,13 @@
+<mat-form-field>
+  <input type="text" placeholder="Firma" aria-label="Company" matInput [matAutocomplete]="elementsAutocomplete" [formControl]="control" />
+  <mat-autocomplete #elementsAutocomplete="matAutocomplete" [displayWith]="displayElement.bind(this)" (opened)="autocompleteScroll()">
+    <ng-container *ngIf="results.length === 0">
+      <mat-option disabled="true">
+        Brak wyników
+      </mat-option>
+    </ng-container>
+    <mat-option *ngFor="let result of results" [value]="result">
+      {{ result.name }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

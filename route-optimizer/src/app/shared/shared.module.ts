@@ -13,6 +13,8 @@ import { MapComponent } from './components/map/map.component';
 import { SpinnerOverlayComponent } from './components/spinner-overlay/spinner-overlay.component';
 import { ConfirmRemoveModal } from './components/confirm-remove-modal/confirm-remove.modal';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { AutocompleteInfiniteScrollComponent } from './components/autocomplete-infinite-scroll/autocomplete-infinite-scroll.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
     MapComponent,
     SpinnerOverlayComponent,
     ConfirmRemoveModal,
-    ProgressBarComponent
+    ProgressBarComponent,
+    AutocompleteInfiniteScrollComponent
   ],
   entryComponents: [SpinnerOverlayComponent, ConfirmRemoveModal],
   imports: [
@@ -33,7 +36,8 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
     MatInputModule,
     ReactiveFormsModule,
     MaterialModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    InfiniteScrollModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -47,7 +51,8 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
     BreadcrumbModule,
     PaginatorComponent,
     // MapComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    AutocompleteInfiniteScrollComponent
   ]
 })
 export class SharedModule {}

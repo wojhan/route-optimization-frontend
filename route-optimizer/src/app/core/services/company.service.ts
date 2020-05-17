@@ -19,8 +19,8 @@ export class CompanyService {
 
   constructor(private authenticationService: AuthenticationService, private http: HttpClient) {}
 
-  list(urlOrFilter?: string | object): Observable<Page<Company>> {
-    return queryPaginated<Company>(this.http, this.apiCompaniesUrl, this.perPage, urlOrFilter);
+  list(urlOrFilter?: string | object, pageSize?: number): Observable<Page<Company>> {
+    return queryPaginated<Company>(this.http, this.apiCompaniesUrl, pageSize ? pageSize : this.perPage, urlOrFilter);
   }
 
   getCompany(companyId: number): Observable<Company> {
