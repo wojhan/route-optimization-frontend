@@ -15,7 +15,8 @@ export const UserDashboardRoutes: Route[] = [
     resolve: { user: UserResolve },
     children: [
       { path: '', component: UserDashboardHomePage },
-      { path: 'companies', loadChildren: './modules/companies/companies.module#CompaniesModule' }
+      { path: 'companies', loadChildren: './modules/companies/companies.module#CompaniesModule' },
+      { path: 'requisitions', loadChildren: './modules/requisitions/requisitions.module#RequisitionsModule' }
     ]
   }
 ];
