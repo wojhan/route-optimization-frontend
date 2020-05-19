@@ -6,6 +6,7 @@ import { UserResolve } from '@route-optimizer/core/UserResolve';
 import { BusinessTripDetailPage } from '@route-optimizer/modules/business-trips/pages/business-trip-detail/business-trip-detail.page';
 import { BusinessTripsResolver } from '@route-optimizer/modules/business-trips/business-trips.resolver';
 import { BusinessTripAddPage } from '@route-optimizer/modules/business-trips/pages/business-trip-add/business-trip-add.page';
+import { BusinessTripEditPage } from '@route-optimizer/modules/business-trips/pages/business-trip-edit/business-trip-edit.page';
 
 export const BusinessTripsRoutes: Route[] = [
   {
@@ -35,6 +36,14 @@ export const BusinessTripsRoutes: Route[] = [
         component: BusinessTripDetailPage,
         data: {
           breadcrumb: 'Szczegóły'
+        },
+        resolve: { businessTrip: BusinessTripsResolver }
+      },
+      {
+        path: ':id/edit',
+        component: BusinessTripEditPage,
+        data: {
+          breadcrumb: 'Edycja'
         },
         resolve: { businessTrip: BusinessTripsResolver }
       }

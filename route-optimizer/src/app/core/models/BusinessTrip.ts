@@ -11,11 +11,12 @@ export class BusinessTrip {
   finishDateAsDate: Date;
   duration: number;
   distance: number;
-  assignee: Employee | number;
-  department: Department | number;
+  assignee: Employee;
+  department: Department;
   estimatedProfit: number;
   routes: Route[];
   requistions: Requisition[];
+  requisitions: Requisition[];
   maxDistance: number;
   isProcessed: boolean;
 }

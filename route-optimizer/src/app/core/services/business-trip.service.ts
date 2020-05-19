@@ -11,6 +11,7 @@ import { DateTimeConverter } from '../helpers/DateTimeConverter';
 import { RouteType } from '../enums/RouteType';
 import { BusinessTripFilter } from '@route-optimizer/modules/business-trips/BusinessTripFilter';
 import { Route } from '@route-optimizer/core/models/Route';
+import { BusinessTripFormData } from '@route-optimizer/core/models/forms/BusinessTripFormData';
 
 @Injectable({
   providedIn: 'root'
@@ -104,5 +105,10 @@ export class BusinessTripService {
 
   createBusinessTrip(businessTrip: BusinessTrip): Observable<BusinessTrip> {
     return this.http.post<BusinessTrip>(this.apiBusinessTripsUrl, businessTrip);
+  }
+
+  partialUpdateBusinessTrip(businessTripId: number, businessTrip: BusinessTripFormData): Observable<BusinessTrip> {
+    const url = `${this.apiBusinessTripsUrl}${businessTripId}/`;
+    return this.http.patch<BusinessTrip>(url, businessTrip);
   }
 }
