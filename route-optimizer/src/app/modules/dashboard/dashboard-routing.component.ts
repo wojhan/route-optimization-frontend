@@ -158,7 +158,7 @@ const dashboardRoutes: Routes = [
 //     },
 //     {
 //       path: 'add',
-//       component: BusinessTripAddComponent,
+//       component: BusinessTripAddPage,
 //       data: {
 //         breadcrumb: 'Dodaj delegację'
 //       }
