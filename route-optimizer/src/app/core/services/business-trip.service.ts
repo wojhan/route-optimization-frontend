@@ -101,4 +101,8 @@ export class BusinessTripService {
 
     return numbers;
   }
+
+  createBusinessTrip(businessTrip: BusinessTrip): Observable<BusinessTrip> {
+    return this.http.post<BusinessTrip>(this.apiBusinessTripsUrl, businessTrip);
+  }
 }

@@ -1,6 +1,7 @@
 import { Employee } from './Employee';
 import { Route } from './Route';
 import { Requisition } from './Requisition';
+import { Department } from '@route-optimizer/core/models/Department';
 
 export class BusinessTrip {
   id: number;
@@ -10,7 +11,8 @@ export class BusinessTrip {
   finishDateAsDate: Date;
   duration: number;
   distance: number;
-  assignee: Employee;
+  assignee: Employee | number;
+  department: Department | number;
   estimatedProfit: number;
   routes: Route[];
   requistions: Requisition[];

@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col"></div>
+</div>
+<div class="requisition-checkbox-list px-3">
+  <div class="row h-100" *ngIf="requisitions.loading === true">
+    <div class="col h-100 d-flex justify-content-center align-items-center">
+      <app-lds-roller></app-lds-roller>
+    </div>
+  </div>
+  <div class="row" *ngIf="requisitions.loading === undefined">
+    <div class="col d-flex justify-content-center">
+      <div class="alert alert-light">
+        <p>Wybierz z listy po lewej pracownika, którego dotyczyć będzie tworzona delegacja</p>
+        <p>
+          Po wybraniu pracownika znajdować się będą tutaj oferty, które są dostępne dla wybranej osoby. Zostały one stworzone przez danego
+          pracownika, bądź utworzone przez administratora
+        </p>
+        <p>
+          Aby stworzyć delegację, należy wybrać oferty (przynajmniej jedną). Wybrane przez Ciebie oferty będą przetwarzane przez algorytm
+          podczas generowania optymalnej trasy, ale niekoniecznie wszystkie z nich zostaną w niej zawarte.
+        </p>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="requisitions.loading === false">
+    <div class="row">
+      <div class="col">
+        <h2>Oferty dostępne dla pracownika</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <form [formGroup]="filterForm">
+          <input placeholder="Szukaj..." class="form-control" formControlName="filter" />
+        </form>
+      </div>
+      <div class="col-auto d-flex align-items-center">
+        <mat-checkbox (change)="onAllCheckChange($event)">Zaznacz wszystko</mat-checkbox>
+      </div>
+    </div>
+    <div class="row" *ngIf="requsitionLoaded.data">
+      <div class="col col-xl-9">Firma</div>
+      <div class="col col-xl-3 d-flex justify-content-end">Zysk</div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="row requisition-row-checkbox" *ngFor="let requisition of requsitionLoaded.data">
+          <div class="col col-xl-9 d-flex align-items-center">
+            <div class="row">
+              <div class="col-auto d-flex align-items-center">
+                <mat-checkbox [value]="requisition" (change)="onCheckChange($event)" [checked]="isRequistionChecked(requisition)">
+                </mat-checkbox>
+              </div>
+              <div class="col d-flex align-items-center">
+                {{ requisition.company.nameShort }}
+              </div>
+            </div>
+          </div>
+          <div class="col col-xl-3 justify-content-end">{{ requisition.estimatedProfit }} zł</div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

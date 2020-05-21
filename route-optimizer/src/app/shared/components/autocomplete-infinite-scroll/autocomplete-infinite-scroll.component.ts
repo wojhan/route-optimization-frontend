@@ -16,6 +16,7 @@ export class AutocompleteInfiniteScrollComponent implements OnInit, OnDestroy {
   @Input() displayProperties: string[];
   @Input() control: FormControl;
   @Input() url: string;
+  @Input() placeholder: string;
 
   @ViewChild('elementsAutocomplete', { static: false }) elementsAutocompleteRef: MatAutocomplete;
   @ViewChild(MatAutocompleteTrigger, { static: false }) autocompleteTrigger: MatAutocompleteTrigger;
@@ -67,6 +68,10 @@ export class AutocompleteInfiniteScrollComponent implements OnInit, OnDestroy {
       debounceTime(200),
       map(value => {
         this.pageLoading = true;
+        if (value === this.placeholder) {
+          console.log('placeholde');
+          return EMPTY;
+        }
         if (value instanceof Object) {
           return this.displayElement(value);
         }
