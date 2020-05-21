@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+  <form *ngIf="data.form" [formGroup]="data.form" id="field-container">
+    <div class="row">
+      <div class="col">
+        <app-autocomplete-infinite-scroll [displayProperties]="['nameShort']" [control]="autocompleteControl" [url]="autocompleteUrl">
+          <ng-container *ngIf="autocompleteControl.hasError('invalid')">Wybierz firmę z listy</ng-container>
+          <ng-container *ngIf="autocompleteControl.hasError('required')">To pole jest wymagane</ng-container>
+        </app-autocomplete-infinite-scroll>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field>
+          <input type="number" matInput placeholder="Oszacowany zysk" formControlName="estimatedProfit" />
+          <mat-error *ngIf="data.form.get('estimatedProfit').hasError('required')">To pole jest wymagane </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  <div class="row my-3" *ngIf="errors">
+    <div class="col">
+      <mat-error *ngFor="let error of errors">{{error}}</mat-error>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions class="buttons">
+  <button mat-button (click)="onNoClick()">Cofnij</button>
+  <button mat-button (click)="onSaveClick()" [disabled]="data.form.invalid">Zapisz</button>
+</div>

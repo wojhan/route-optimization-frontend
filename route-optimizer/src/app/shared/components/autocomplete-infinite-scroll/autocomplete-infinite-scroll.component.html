@@ -10,4 +10,8 @@
       {{ result.name }}
     </mat-option>
   </mat-autocomplete>
+  <mat-error>
+    <ng-content></ng-content>
+  </mat-error>
+  <!--  <mat-error *ngIf="control.errors?.invalid">Wybierz element z listy</mat-error>-->
 </mat-form-field>

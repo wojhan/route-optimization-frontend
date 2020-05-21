@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col">
+    <h1 class="section-header">Lista ofert dla Ciebie</h1>
+  </div>
+</div>
+<div class="row mb-3">
+  <div class="col">
+    <div class="search-bar" [formGroup]="filterForm">
+      <input formControlName="search" placeholder="Szukaj..." class="form-control" />
+    </div>
+  </div>
+  <div class="col-auto">
+    <button class="btn btn-outline-primary float-right" (click)="addRequisition()">Dodaj ofertę</button>
+  </div>
+</div>
+<div class="row my-5" *ngIf="requisitions.loading">
+  <div class="col d-flex justify-content-center">
+    <app-lds-roller></app-lds-roller>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div id="company-list" class="paginated-list">
+      <div class="row" *ngIf="!requisitions.loading">
+        <div class="col">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="thead-light">
+                <tr class="">
+                  <th></th>
+                  <th>Data dodania</th>
+                  <th>Firma</th>
+                  <th class="d-flex justify-content-end">Oszacowany zysk</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let requisition of requisitions.data" [className]="requisition.createdBy !== userId ? 'table-light' : ''">
+                  <td class="">
+                    <div class="btn-group" *ngIf="canEdit(requisition)">
+                      <button
+                        class="btn btn-default btn-sm dropdown-toggle no-caret"
+                        type="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        <fa-icon [icon]="faEllipsisV"></fa-icon>
+                      </button>
+                      <div class="dropdown-menu">
+                        <button class="dropdown-item" (click)="deleteRequisition(requisition.id)">Usuń</button>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{requisition.assignmentDate | date: 'dd MMMM yyyy':undefined: 'pl'}}</td>
+                  <td>
+                    {{requisition.company.nameShort}},
+                    <ng-container *ngIf="requisition.company.street">
+                      ul. {{requisition.company.street}} {{requisition.company.houseNo}}, {{requisition.company.city}}
+                    </ng-container>
+                    <ng-container *ngIf="!requisition.company.street">
+                      {{requisition.company.city}} {{requisition.company.houseNo}}
+                    </ng-container>
+                  </td>
+                  <td class="d-flex justify-content-end">{{requisition.estimatedProfit}} zł</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <app-paginator
+            [page]="page | async"
+            (pageChange)="onPageChanged($event)"
+            [pageUrl]="requisitionsPageUrl"
+            class="float-right"
+          ></app-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
