@@ -44,7 +44,7 @@ export class BusinessTripAddPage implements OnInit {
       startDate: new FormControl(null, [Validators.required]),
       finishDate: new FormControl(null, [Validators.required]),
       maxDistance: new FormControl(null, [Validators.required]),
-      requistions: this.requisitionsControl
+      requisitions: this.requisitionsControl
     });
 
     this.requisitions = { data: null, loading: undefined };
@@ -87,6 +87,7 @@ export class BusinessTripAddPage implements OnInit {
 
     businessTrip.assignee = this.assigneeControl.value.id;
     businessTrip.department = this.departmentControl.value.id;
+    businessTrip.requistions = this.businessTripForm.get('requisitions').value;
 
     if (businessTrip.requistions.length === 0) {
       this.errors.push('Musisz zaznaczyć przynajmniej jedną ofertę');

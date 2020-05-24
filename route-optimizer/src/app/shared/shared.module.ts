@@ -52,7 +52,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     PaginatorComponent,
     // MapComponent,
     ProgressBarComponent,
-    AutocompleteInfiniteScrollComponent
+    AutocompleteInfiniteScrollComponent,
+    SpinnerOverlayComponent
   ]
 })
 export class SharedModule {}

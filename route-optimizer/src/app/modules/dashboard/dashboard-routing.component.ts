@@ -172,7 +172,7 @@ const dashboardRoutes: Routes = [
 //     },
 //     {
 //       path: ':id/edit',
-//       component: BusinessTripEditComponent,
+//       component: BusinessTripEditPage,
 //       data: {
 //         breadcrumb: 'Edycja delegacji'
 //       }

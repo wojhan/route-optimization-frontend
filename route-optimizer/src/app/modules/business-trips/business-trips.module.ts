@@ -19,6 +19,7 @@ import { BusinessTripsRoutes } from '@route-optimizer/modules/business-trips/bus
 import { BaseLayoutModule } from '@route-optimizer/modules/base-layout/base-layout.module';
 import { BusinessTripAddPage } from './pages/business-trip-add/business-trip-add.page';
 import { BusinessTripFormRequisitionsComponent } from './components/business-trip-form-requisitions/business-trip-form-requisitions.component';
+import { BusinessTripEditPage } from './pages/business-trip-edit/business-trip-edit.page';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { BusinessTripFormRequisitionsComponent } from './components/business-tri
     BusinessTripCardsComponent,
     BusinessTripCardComponent,
     BusinessTripAddPage,
-    BusinessTripFormRequisitionsComponent
+    BusinessTripFormRequisitionsComponent,
+    BusinessTripEditPage
   ],
   providers: [BusinessTripsResolver],
   imports: [MapModule, BaseLayoutModule, RouterModule.forChild(BusinessTripsRoutes), FontAwesomeModule, CommonModule, SharedModule]
