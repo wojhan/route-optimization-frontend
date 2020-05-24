@@ -38,17 +38,17 @@
         <mat-checkbox (change)="onAllCheckChange($event)">Zaznacz wszystko</mat-checkbox>
       </div>
     </div>
-    <div class="row" *ngIf="requsitionLoaded.data">
+    <div class="row" *ngIf="requisitionsLoaded.data">
       <div class="col col-xl-9">Firma</div>
       <div class="col col-xl-3 d-flex justify-content-end">Zysk</div>
     </div>
     <div class="row">
       <div class="col">
-        <div class="row requisition-row-checkbox" *ngFor="let requisition of requsitionLoaded.data">
+        <div class="row requisition-row-checkbox" *ngFor="let requisition of requisitionsLoaded.data">
           <div class="col col-xl-9 d-flex align-items-center">
             <div class="row">
               <div class="col-auto d-flex align-items-center">
-                <mat-checkbox [value]="requisition" (change)="onCheckChange($event)" [checked]="isRequistionChecked(requisition)">
+                <mat-checkbox [value]="requisition" (change)="onCheckChange($event)" [checked]="isRequisitionChecked(requisition)">
                 </mat-checkbox>
               </div>
               <div class="col d-flex align-items-center">

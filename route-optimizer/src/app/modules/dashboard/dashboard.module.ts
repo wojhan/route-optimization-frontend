@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
-import { DashboardRouting } from './dashboard-routing.component';
+
 import { SharedModule } from '../../shared/shared.module';
-import { DashboardPage } from './pages/dashboard.page';
-import { DashboardHomePage } from './pages/dashboard-home.page';
 import { DashboardProfileComponent } from './components/dashboard-profile/dashboard-profile.component';
 import { UpdateProfileModal } from './modals/update-profile.modal';
 import { ChangePasswordModal } from './modals/change-password.modal';

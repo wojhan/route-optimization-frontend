@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import { DashboardHomeService } from '../../dashboard-home.service';
 import { Observable } from 'rxjs';
-// import { Requisition } from 'src/app/requistions/requistions.service';
 import { delay, map, tap } from 'rxjs/operators';
 import { faMoneyBillWave, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Requisition } from '@route-optimizer/core/models/Requisition';
