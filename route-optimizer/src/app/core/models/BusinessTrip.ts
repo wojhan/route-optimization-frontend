@@ -15,7 +15,6 @@ export class BusinessTrip {
   department: Department;
   estimatedProfit: number;
   routes: Route[];
-  requistions: Requisition[];
   requisitions: Requisition[];
   maxDistance: number;
   isProcessed: boolean;

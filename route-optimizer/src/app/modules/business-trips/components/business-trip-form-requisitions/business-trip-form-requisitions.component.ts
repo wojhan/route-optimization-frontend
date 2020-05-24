@@ -16,7 +16,7 @@ export class BusinessTripFormRequisitionsComponent implements OnInit {
   filterForm: FormGroup;
   filterControl: FormControl;
   filteredRequisitions: FetchableContentList<Requisition>;
-  requsitionLoaded: FetchableContentList<Requisition>;
+  requisitionsLoaded: FetchableContentList<Requisition>;
 
   constructor() {}
 
@@ -26,14 +26,14 @@ export class BusinessTripFormRequisitionsComponent implements OnInit {
     this.filterForm = new FormGroup({
       filter: this.filterControl
     });
-    this.requsitionLoaded = this.requisitions;
+    this.requisitionsLoaded = this.requisitions;
     this.filterControl.valueChanges
       .pipe(
         debounceTime(200),
         map((value: string) => {
           // Only when requisitions are fully loaded
           console.log('d');
-          this.requsitionLoaded = this.filteredRequisitions;
+          this.requisitionsLoaded = this.filteredRequisitions;
           if (this.requisitions.loading === false) {
             this.filteredRequisitions.data = this.requisitions.data.filter((requisition: Requisition) => {
               const { name, nip, street, city } = requisition.company;
@@ -61,9 +61,9 @@ export class BusinessTripFormRequisitionsComponent implements OnInit {
     }
   }
 
-  isRequistionChecked(requistion) {
+  isRequisitionChecked(requisition) {
     if (this.requisitionsFormControl.controls.length > 0) {
-      return this.requisitionsFormControl.controls.find(element => JSON.stringify(element.value) === JSON.stringify(requistion));
+      return this.requisitionsFormControl.controls.find(element => JSON.stringify(element.value) === JSON.stringify(requisition));
     } else {
       return false;
     }

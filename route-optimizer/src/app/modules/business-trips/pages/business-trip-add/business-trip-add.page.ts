@@ -87,9 +87,9 @@ export class BusinessTripAddPage implements OnInit {
 
     businessTrip.assignee = this.assigneeControl.value.id;
     businessTrip.department = this.departmentControl.value.id;
-    businessTrip.requistions = this.businessTripForm.get('requisitions').value;
+    businessTrip.requisitions = this.businessTripForm.get('requisitions').value;
 
-    if (businessTrip.requistions.length === 0) {
+    if (businessTrip.requisitions.length === 0) {
       this.errors.push('Musisz zaznaczyć przynajmniej jedną ofertę');
       return;
     }
